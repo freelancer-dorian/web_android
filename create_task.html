@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title></title>	
+	<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="errordetect.js"></script>
+</head>
+<body>	
+	<h1 class="fancy">Create Task</h1>	
+	<meta name="viewport" content="width=device-width">
+	<form id="taskentry">
+		<ul>
+			<li><input type="text" name="task[name]" id="taskname" placeholder="Task Name"/></li>
+			<li><textarea name="task[description]" id="taskdesc" placeholder="Description"
+				rows="5"></textarea></li>
+			<li><input type="text" name="task[due]" id="taskdue" placeholder="Task Due" /></li>
+			<li class="naked"><input type="submit" name="Save" /></li>
+		</ul>
+	</form>
+	<link rel="stylesheet" type="text/css" media="screen" href="todolist.css">
+</body>
+</html>
