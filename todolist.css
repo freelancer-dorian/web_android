@@ -1,3 +1,17 @@
+
+input.invalid, textarea.invalid { 
+background: url(exclamation.png) no-repeat 2px 2px; 
+padding-left: 22px; 
+} 
+#errors { 
+margin: 8px 6px 2px 6px; 
+padding: 6px 14px; 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, 
+#cc0000), color-stop(0.7, #770022)); 
+-webkit-border-radius: 4px; 
+color: white; 
+display: none; 
+} 
 body { 
 margin: 0px; 
 min-height: 480px; 
@@ -44,17 +58,4 @@ color: white;
 padding: 10px 8px; 
 margin: 0 6px 6px 6px; 
 text-align: center; 
-} 
-input.invalid, textarea.invalid { 
-background: url(exclamation.png) no-repeat 2px 2px; 
-padding-left: 22px; 
-} 
-#errors { 
-margin: 8px 6px 2px 6px; 
-padding: 6px 14px; 
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, 
-#cc0000), color-stop(0.7, #770022)); 
--webkit-border-radius: 4px; 
-color: white; 
-display: none; 
 } 
