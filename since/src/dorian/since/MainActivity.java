@@ -2,13 +2,12 @@ package dorian.since;
 
 import java.util.Calendar;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +19,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
+@SuppressLint("SimpleDateFormat")
 public class MainActivity extends Activity {
 
 	private static TextView tv;
@@ -28,7 +29,7 @@ public class MainActivity extends Activity {
 	private int year;
 	private int month;
 	private int day;
-	
+	private long days;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class MainActivity extends Activity {
 	    year = c.get(Calendar.YEAR);
 	    month = c.get(Calendar.MONTH);
 	    day = c.get(Calendar.DAY_OF_MONTH);
-		
+		days = 0;
 	}
 
 	@Override
@@ -72,17 +73,30 @@ public class MainActivity extends Activity {
 			return new DatePickerDialog(this, new OnDateSetListener() {
 				
 				@Override
-				public void onDateSet(DatePicker view, int year, int monthOfYear,
-						int dayOfMonth) {
+				public void onDateSet(DatePicker view, int y, int m,
+						int d) {
+					Calendar c1 = Calendar.getInstance();
+					Calendar c = Calendar.getInstance();
+					c1.set(Calendar.YEAR, y);
+					c1.set(Calendar.MONTH, m);
+					c1.set(Calendar.DATE, d);
 					
+					long diff = c.getTimeInMillis() - c1.getTimeInMillis();
+					days = diff/(1000 * 60 * 60 * 24);
+//					PlaceholderFragment pf = new PlaceholderFragment();
+//					pf.updateText(Long.toString(days));
+					Toast.makeText(getApplicationContext(), "It is " + days + " days!!!",
+						     Toast.LENGTH_SHORT).show();
 				}
 			}, year, month, day);
+		} else if (id == 1) { 
+			return new Dialog(this);
 		} else {
 			return null;
 		}
 	}
 	
-	void showDialog() {
+	void showDialogs() {
 //	    mStackLevel++;
 //
 //	    // DialogFragment.show() will take care of adding the fragment
@@ -111,6 +125,10 @@ public class MainActivity extends Activity {
 		public PlaceholderFragment() {
 		}
 
+		public void updateText(String text) {
+			
+		}
+		
 		public static PlaceholderFragment newInstance(int num) {
 			PlaceholderFragment f = new PlaceholderFragment();
 
@@ -159,7 +177,7 @@ public class MainActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					Log.d("wh","button clicked");
-					((MainActivity)getActivity()).showDialog();
+					((MainActivity)getActivity()).showDialogs();
 				}
 			});
 			
